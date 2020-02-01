@@ -17,7 +17,7 @@ public class Boost : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            //TODO get component player pour add boost;
+            
         }
     }
 
