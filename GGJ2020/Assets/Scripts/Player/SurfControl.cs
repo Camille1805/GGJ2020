@@ -8,7 +8,7 @@ public class SurfControl : MonoBehaviour
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private bool showDebug = false;
     [SerializeField] BoolValue isBoosted;
-    [SerializeField] float forceBonusValue = 2;
+    [SerializeField] float forceBonusValue = 10;
     private InputManager inputManager;
 
     void Start()
@@ -27,7 +27,7 @@ public class SurfControl : MonoBehaviour
     private void MoveForward(float yAxisValue)
     {
         float forwardForce = isBoosted.value
-            ? thrust * yAxisValue * forceBonusValue
+            ? thrust * yAxisValue + forceBonusValue
             : thrust * yAxisValue;
         rigidBody.AddForce(transform.forward * forwardForce, forwardForceMode);
         if (showDebug)
