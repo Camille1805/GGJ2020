@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoostInput : MonoBehaviour
 {
     [SerializeField]
-    Float boost;
+    Float boost = null;
     [SerializeField]
     BoolValue isBoosted=null;
     bool isTrigered;

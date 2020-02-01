@@ -6,11 +6,11 @@ public class Boost : MonoBehaviour
 {
 
     [SerializeField]
-    float quantiteeEnPlus;
+    float quantiteeEnPlus=0;
     [SerializeField]
-    Float boostDuJoueur;
+    Float boostDuJoueur = null;
     [SerializeField]
-    Float boostMaxJoueur;
+    Float boostMaxJoueur=null;
 
     private void OnTriggerEnter(Collider other)
     {

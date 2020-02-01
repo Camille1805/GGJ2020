@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraTransitioner : MonoBehaviour
 {
 
-    [SerializeField] private Transform[] views;
+    [SerializeField] private Transform[] views=null;
     [SerializeField] private Transform currentView;
-    [SerializeField] private float transitionSpeed;
+    [SerializeField] private float transitionSpeed=0;
 
     void Update()
     {
