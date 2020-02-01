@@ -13,6 +13,7 @@ public class SurfControl : MonoBehaviour
 
     void Start()
     {
+        isBoosted = ScriptableObject.CreateInstance<BoolValue>();
         rigidBody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
     }
