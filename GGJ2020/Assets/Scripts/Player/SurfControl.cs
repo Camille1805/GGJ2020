@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SurfControl : MonoBehaviour
 {
-    public float thrust;
-    public Rigidbody rigidBody;
+    [SerializeField] private float thrust;
+    [SerializeField] private Rigidbody rigidBody;
     private InputManager inputManager;
 
     void Start()
@@ -16,7 +16,10 @@ public class SurfControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidBody.AddForce(transform.forward * thrust);
-        Debug.Log("directions: " + inputManager.getAxesValues());
+        Vector2 directions = inputManager.getAxesValues();
+        float forwardForce = thrust * directions.y;
+        Debug.Log("forwardForce" + forwardForce + ", directionY" + directions.y);
+        rigidBody.AddForce(transform.forward * forwardForce);
+        transform.eulerAngles = new Vector3(0, Mathf.Atan2(directions.y, directions.x) * 180 / Mathf.PI, 0);
     }
 }
