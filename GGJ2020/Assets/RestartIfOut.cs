@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class RestartIfOut : MonoBehaviour
 {
-    float timer = 1f;
+    [SerializeField] float timer = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
