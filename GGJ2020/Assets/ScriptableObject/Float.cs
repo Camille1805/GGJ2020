@@ -8,9 +8,4 @@ using UnityEngine;
 public class Float : ScriptableObject
 {
     public float value;
-
-    public static implicit operator Float(float v)
-    {
-        throw new NotImplementedException();
-    }
 }

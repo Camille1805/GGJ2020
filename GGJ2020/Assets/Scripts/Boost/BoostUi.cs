@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 public class BoostUi : MonoBehaviour
 {
-    [SerializeField] private Float nbrBoost = 1.0f;
+    [SerializeField] private Float nbrBoost ;
     [SerializeField] private Image BoostFiller = null;
-    [SerializeField] private Float maxBoost = 1.0f;
+    [SerializeField] private Float maxBoost ;
 
     // Update is called once per frame
     void Update()

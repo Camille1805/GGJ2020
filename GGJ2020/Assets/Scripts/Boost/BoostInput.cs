@@ -7,10 +7,10 @@ public class BoostInput : MonoBehaviour
     [SerializeField]
     Float boost;
     [SerializeField]
-    BoolValue isBoosted;
+    BoolValue isBoosted=null;
     bool isTrigered;
     [SerializeField]
-    TrailRenderer trail;
+    TrailRenderer trail=null;
     // Start is called before the first frame update
     void Start()
     {
