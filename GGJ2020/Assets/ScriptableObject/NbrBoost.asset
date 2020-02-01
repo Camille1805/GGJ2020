@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72701c29d107678488a70422d8439fcd, type: 3}
   m_Name: NbrBoost
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1000
