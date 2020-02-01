@@ -7,7 +7,7 @@ public class SkateAnim : MonoBehaviour
 
     public float AnimationLerpSpeed;
     SkateControl control;
-    InputProcessing inputs;
+    InputManager inputs;
     Animator anim;
 
 

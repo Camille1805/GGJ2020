@@ -16,7 +16,7 @@ public class SkateControl : MonoBehaviour
     public bool reverse = false;
 
     [HideInInspector] public Rigidbody rb;
-    InputProcessing inputs;
+    InputManager inputs;
     SkateAnim anim;
     float height;
 
@@ -40,7 +40,7 @@ public class SkateControl : MonoBehaviour
     {
         CheckPhysics();
 
-        Vector2 direction = inputs.GetDirection();
+        Vector2 direction = inputs.getAxesValues();
         SkaterMove(direction);
 
     }
@@ -153,7 +153,7 @@ public class SkateControl : MonoBehaviour
         // TargetRotation = transform.rotation; 
         // VelocityRotation = Quaternion.identity; 
         rb = GetComponent<Rigidbody>();
-        inputs = GetComponent<InputProcessing>();
+        inputs = GetComponent<InputManager>();
         anim = GetComponent<SkateAnim>();
         height = GetComponent<MeshCollider>().bounds.size.y / 2f;
     }
