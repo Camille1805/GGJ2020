@@ -30,9 +30,7 @@ public class SkateControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         Initialization();
-
     }
 
     // Update is called once per frame
