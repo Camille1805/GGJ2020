@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SurfControl : MonoBehaviour
 {
     [SerializeField] private float thrust;
+    [SerializeField] private ForceMode forwardForceMode;
+    [SerializeField] private float rotationForce;
     [SerializeField] private Rigidbody rigidBody;
     private InputManager inputManager;
 
@@ -17,9 +20,23 @@ public class SurfControl : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 directions = inputManager.getAxesValues();
-        float forwardForce = thrust * directions.y;
-        Debug.Log("forwardForce" + forwardForce + ", directionY" + directions.y);
-        rigidBody.AddForce(transform.forward * forwardForce);
-        transform.eulerAngles = new Vector3(0, Mathf.Atan2(directions.y, directions.x) * 180 / Mathf.PI, 0);
+        this.MoveForward(directions.y);
+        this.RotateSurf(directions);
+    }
+
+    private void MoveForward(float yAxisValue)
+    {
+        float forwardForce = thrust * yAxisValue;
+        rigidBody.AddForce(transform.forward * forwardForce, forwardForceMode);
+        // Debug.Log("forwardForce" + forwardForce + ", directionY" + yAxisValue);
+    }
+
+    private void RotateSurf(Vector2 directions)
+    {
+        Vector3 eulerAngles = transform.eulerAngles;
+        eulerAngles.y += directions.x * rotationForce;
+        Quaternion eulerRot = Quaternion.Euler(eulerAngles);
+        transform.rotation = Quaternion.Slerp(transform.rotation, eulerRot, Time.deltaTime * 10);
+        Debug.Log(eulerRot + " " + directions.x);
     }
 }
