@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class BoostInput : MonoBehaviour
 {
     [SerializeField]
     Float boost;
     [SerializeField]
     BoolValue isBoosted;
+    bool isTrigered;
+    [SerializeField]
+    GameObject trailGameObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +21,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         isBoosted.value=false;
-        if (Input.GetButton("BOOST") && boost.value > 0) 
+        isTrigered = false;
+        if (Input.GetAxis("BOOST") != 0)
+        {
+            isTrigered = true;
+        }
+        if (isTrigered && boost.value > 0) 
         {
            boost.value--;
-           isBoosted.value = true;    
+           isBoosted.value = true;
+           Debug.Log("Le joueur utilise son boost !");
         }
-        Debug.Log("Le joueur utilise sont boost: " + isBoosted.value);
+        trailGameObject.SetActive(isBoosted.value);
     }
-    void MoveMovement()
-    {
-        //TODO ajouter boost si boost.value=true ;
-    }
+
 }
