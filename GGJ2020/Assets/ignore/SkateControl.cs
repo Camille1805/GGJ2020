@@ -155,6 +155,6 @@ public class SkateControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputs = GetComponent<InputProcessing>();
         anim = GetComponent<SkateAnim>();
-        height = GetComponent<Collider>().bounds.size.y / 2f;
+        height = GetComponent<MeshCollider>().bounds.size.y / 2f;
     }
 }
