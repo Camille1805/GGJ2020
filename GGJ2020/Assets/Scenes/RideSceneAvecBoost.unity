@@ -1044,7 +1044,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: a9efe0b3ee06cd546bef1a5b05660560,
         type: 3}
       propertyPath: m_Name
-      value: surf
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: a9efe0b3ee06cd546bef1a5b05660560,
         type: 3}
