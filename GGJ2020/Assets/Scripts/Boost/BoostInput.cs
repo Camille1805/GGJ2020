@@ -10,7 +10,7 @@ public class BoostInput : MonoBehaviour
     BoolValue isBoosted;
     bool isTrigered;
     [SerializeField]
-    GameObject trailGameObject;
+    TrailRenderer trail;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +32,7 @@ public class BoostInput : MonoBehaviour
            isBoosted.value = true;
            Debug.Log("Le joueur utilise son boost !");
         }
-        trailGameObject.SetActive(isBoosted.value);
+        trail.emitting = isBoosted.value;
     }
 
 }
