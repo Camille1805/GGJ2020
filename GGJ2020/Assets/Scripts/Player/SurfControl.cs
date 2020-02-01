@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SurfControl : MonoBehaviour
 {
@@ -11,8 +8,9 @@ public class SurfControl : MonoBehaviour
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private bool showDebug = false;
     [SerializeField] BoolValue isBoosted;
-    private InputManager inputManager;
     [SerializeField] float forceBonusValue = 2;
+    private InputManager inputManager;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -28,16 +26,13 @@ public class SurfControl : MonoBehaviour
 
     private void MoveForward(float yAxisValue)
     {
-        float forwardForce;
-        if(isBoosted.value)
-            forwardForce = thrust * yAxisValue *forceBonusValue;
-        else
-            forwardForce = thrust * yAxisValue;
-        Debug.Log(forwardForce);
+        float forwardForce = isBoosted.value
+            ? thrust * yAxisValue * forceBonusValue
+            : thrust * yAxisValue;
         rigidBody.AddForce(transform.forward * forwardForce, forwardForceMode);
         if (showDebug)
         {
-            Debug.Log("forward" + transform.forward);
+            Debug.Log("forwardForce: " + forwardForce + "forward: " + transform.forward);
         }
     }
 
