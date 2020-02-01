@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] private string horizontalInputName;
-    [SerializeField] private string verticalInputName;
-    [SerializeField] private float movementSpeed;
+    [SerializeField] public string horizontalInputName;
+    [SerializeField] public string verticalInputName;
+    [SerializeField] public float movementSpeed;
 
-    [SerializeField] private float slopeForce;
-    [SerializeField] private float slopeForceRayLength;
+    [SerializeField] public float slopeForce;
+    [SerializeField] public float slopeForceRayLength;
 
     private CharacterController charController;
 
-    [SerializeField] private AnimationCurve jumpFallOff;
-    [SerializeField] private float jumpMultiplier;
-    [SerializeField] private KeyCode jumpKey;
+    [SerializeField] public AnimationCurve jumpFallOff;
+    [SerializeField] public float jumpMultiplier;
+    [SerializeField] public KeyCode jumpKey;
 
 
     private bool isJumping;
