@@ -18,7 +18,7 @@ public class Boost : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("");
+        Debug.Log("OnTriggerEnter");
         if (other.tag.Equals("Player"))
         {
             boostDuJoueur.value += Mathf.Clamp(quantiteeEnPlus, 0, boostMaxJoueur.value);
