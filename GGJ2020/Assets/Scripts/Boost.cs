@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    [SerializeField]
-    Vector2 vecteurBoost;
+
     [SerializeField]
     float quantiteeEnPlus;
+    [SerializeField]
+    Float boostDuJoueur;
+    [SerializeField]
+    Float boostMaxJoueur;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +18,12 @@ public class Boost : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("");
         if (other.tag.Equals("Player"))
         {
-            
-        }
+            boostDuJoueur.value += Mathf.Clamp(quantiteeEnPlus, 0, boostMaxJoueur.value);
+            Destroy(gameObject);
+;        }
     }
 
 }
