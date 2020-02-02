@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece448db02cb8a342a839e07989c3354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 3.5
+  thrust: 2
   forwardForceMode: 1
   rotationForce: 25
   rigidBody: {fileID: 602646894}
