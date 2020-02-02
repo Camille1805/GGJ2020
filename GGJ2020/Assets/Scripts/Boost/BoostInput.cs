@@ -14,6 +14,7 @@ public class BoostInput : MonoBehaviour
     [SerializeField] AudioSource audioSource = null;
     [SerializeField] private float volumeModifier = 1.0f;
     float volume = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,6 @@ public class BoostInput : MonoBehaviour
             volume = Mathf.Clamp(volume - 0.05f, 0f, 1.0f);
         }
         volume *= volumeModifier;
-        Debug.Log(volume);
         trail.emitting = isBoosted.value;
         audioSource.volume = volume;
     }
