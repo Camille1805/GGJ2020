@@ -5,8 +5,7 @@ using UnityEngine;
 public class ChangeMaterial : MonoBehaviour
 {
     public Renderer material;
-    public Renderer material2;
-    public int value;
+    public float value;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +15,8 @@ public class ChangeMaterial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        material.material.renderQueue = value;
-        // material.material.color = new Color(material.material.color.r, material.material.color.g, material.material.color.b,1-value);
-      //  material2.material.color = new Color(material.material.color.r, material.material.color.g, material.material.color.b, value);
+        value = Mathf.Clamp(value, 0f, 1f);
+        material.material.color= new Color(1f,1f, (255 - 255 * value)/255f, 1);
+
     }
 }
