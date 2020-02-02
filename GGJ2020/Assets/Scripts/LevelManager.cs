@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject[] levels;
+
     void Start()
     {
         
