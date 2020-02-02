@@ -11,6 +11,8 @@ public class BoostInput : MonoBehaviour
     bool isTrigered;
     [SerializeField]
     TrailRenderer trail=null;
+    [SerializeField] AudioSource audioSource = null;
+    float volume=0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +33,15 @@ public class BoostInput : MonoBehaviour
            boost.value--;
            isBoosted.value = true;
            Debug.Log("Le joueur utilise son boost !");
+            volume = Mathf.Clamp(volume+0.1f, 0f, 1.0f);
         }
+        else
+        {
+            volume = Mathf.Clamp(volume-0.05f, 0f, 1.0f);
+        }
+        Debug.Log(volume);
         trail.emitting = isBoosted.value;
+        audioSource.volume = volume;
     }
 
 }

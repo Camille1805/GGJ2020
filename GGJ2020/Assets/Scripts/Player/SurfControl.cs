@@ -15,7 +15,6 @@ public class SurfControl : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
