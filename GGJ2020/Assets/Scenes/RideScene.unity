@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.3
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24777961, g: 0.27780673, b: 0.32570955, a: 0.3}
+  m_IndirectSpecularColor: {r: 0.24777934, g: 0.27780622, b: 0.32570902, a: 0.3}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -858,6 +858,7 @@ MonoBehaviour:
   isBoosted: {fileID: 11400000, guid: 2301ae4826de9434ab43837dfb6e81a9, type: 2}
   forceBonusValue: 2
   audioSource: {fileID: 602646901}
+  volumeModifier: 1
 --- !u!114 &602646896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,6 +875,7 @@ MonoBehaviour:
   isBoosted: {fileID: 11400000, guid: 2301ae4826de9434ab43837dfb6e81a9, type: 2}
   trail: {fileID: 115622164}
   audioSource: {fileID: 602646903}
+  volumeModifier: 0.5
 --- !u!114 &602646897
 MonoBehaviour:
   m_ObjectHideFlags: 0
