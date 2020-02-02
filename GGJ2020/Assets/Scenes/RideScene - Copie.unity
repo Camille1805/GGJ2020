@@ -1017,7 +1017,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 57d05f058ce403f4e834641ccaff80d2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8391e9f7e9a068e4585337ff2232b82a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1287,7 +1287,7 @@ PrefabInstance:
     - target: {fileID: 2908446807018977658, guid: c9791205d8736af4786b9c5ac76d111e,
         type: 3}
       propertyPath: m_Volume
-      value: 0.712
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2941863662711906527, guid: c9791205d8736af4786b9c5ac76d111e,
         type: 3}
