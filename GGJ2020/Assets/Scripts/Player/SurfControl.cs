@@ -10,7 +10,9 @@ public class SurfControl : MonoBehaviour
     [SerializeField] BoolValue isBoosted=null;
     [SerializeField] float forceBonusValue = 10;
     private InputManager inputManager;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
+    [SerializeField] float volumeModifier = 1.0f;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -35,7 +37,7 @@ public class SurfControl : MonoBehaviour
         {
             Debug.Log("forwardForce: " + forwardForce + "forward: " + transform.forward);
         }
-        audioSource.volume = rigidBody.velocity.magnitude / 30;
+        audioSource.volume = rigidBody.velocity.magnitude / 30 * volumeModifier;
     }
 
     private void RotateSurf(Vector2 directions)
