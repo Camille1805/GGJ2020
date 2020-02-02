@@ -11,13 +11,22 @@ public class Boost : MonoBehaviour
     Float boostDuJoueur = null;
     [SerializeField]
     Float boostMaxJoueur=null;
-
+    [SerializeField]
+    float time=10f;
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<SphereCollider>().enabled = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            boostDuJoueur.value += Mathf.Clamp(quantiteeEnPlus, 0, boostMaxJoueur.value);
-            Destroy(gameObject);
+            boostDuJoueur.value = Mathf.Clamp(boostDuJoueur.value+quantiteeEnPlus, 0, boostMaxJoueur.value);
+            GetComponent<MeshRenderer>().enabled=false;
+            GetComponent<SphereCollider>().enabled = false;
+            StartCoroutine(wait());
 ;        }
     }
 
