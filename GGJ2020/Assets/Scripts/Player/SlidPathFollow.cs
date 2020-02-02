@@ -34,17 +34,20 @@ public class SlidPathFollow : MonoBehaviour
     private bool isMoving = true;
     public BoolValue isBoosting;
     private int actualWayPoint;
+    public GameObject center;
 
     private Vector3 targetWaypointVectorPosition;
 
     // Use this for initialization
     void Start()
     {
+        float startSpeed = GetComponent<Rigidbody>().velocity.magnitude;
         gameObject.GetComponent<SurfControl>().enabled = false;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.transform.position = findClosestWayPoints(wayPoints).theWaypoint;
         actualWayPoint = findClosestWayPoints(wayPoints).index;
         targetWaypointVectorPosition = transform.position;
+        speed = startSpeed;
      
     }
 
@@ -56,7 +59,14 @@ public class SlidPathFollow : MonoBehaviour
         { 
                 SetNextWaypoint();
         }
-       
+        if (actualWayPoint >= wayPoints.Length || isBoosting.value == false || actualWayPoint == 0)
+        {
+            Vector3.MoveTowards(transform.position, center.transform.position, speed * Time.deltaTime);
+            Vector3.MoveTowards(transform.forward, center.transform.position, speed * Time.deltaTime);
+            gameObject.GetComponent<SurfControl>().enabled = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.GetComponent<SlidPathFollow>().enabled = false;
+        }
 
         //move to next waypoint.
         Vector3 direction = Vector3.MoveTowards(transform.position, targetWaypointVectorPosition, speed * Time.deltaTime);
@@ -76,13 +86,6 @@ public class SlidPathFollow : MonoBehaviour
         } else 
         {
             actualWayPoint -= 1;
-        }
-        if (actualWayPoint >= wayPoints.Length || isBoosting.value == false || actualWayPoint == 0)
-        {
-            //end of line, destroy
-            gameObject.GetComponent<SurfControl>().enabled = true;
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            return;
         }
         targetWaypointVectorPosition = wayPoints[actualWayPoint].wayPoint.position;
     }

@@ -19,7 +19,7 @@ public class SlideModeDetection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SlideLimite"))
         {
-            Debug.Log("Slide mode");
+            Debug.Log("ça touche");
             surf.GetComponent<SlidPathFollow>().enabled = true;
         };
     }

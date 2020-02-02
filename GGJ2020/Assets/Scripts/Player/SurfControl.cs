@@ -15,7 +15,6 @@ public class SurfControl : MonoBehaviour
 
     void Start()
     {
-        gameObject.GetComponent<SlidPathFollow>().enabled = false;
         rigidBody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
     }
