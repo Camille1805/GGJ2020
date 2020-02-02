@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class CameraTransitioner : MonoBehaviour
 {
+    public Transform startViewPoint;
+
     public Transform target;
     public Transform[] viewPoints;
     public float transitionSpeed = 3.0f;
+    private void Start()
+    {
+        transform.position = startViewPoint.position;
+    }
 
     void Update()
     {
