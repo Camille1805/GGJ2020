@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd4ee9321415f44e88e68952d02b164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantiteeEnPlus: 50
+  quantiteeEnPlus: 500
   boostDuJoueur: {fileID: 11400000, guid: 5fbbce4c83cb91f4096cd1fcbd0c13dd, type: 2}
   boostMaxJoueur: {fileID: 11400000, guid: f6ddf926a48480245b886b6f619ad663, type: 2}
 --- !u!54 &5375474646708796558
@@ -124,5 +124,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
