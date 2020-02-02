@@ -10,8 +10,8 @@ public class SurfControl : MonoBehaviour
     [SerializeField] BoolValue isBoosted=null;
     [SerializeField] float forceBonusValue = 10;
     private InputManager inputManager;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] float volumeModifier;
+    [SerializeField] AudioSource audioSource = null;
+    [SerializeField] float volumeModifier = 1.0f;
 
     void Start()
     {
