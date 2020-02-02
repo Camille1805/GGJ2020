@@ -45,61 +45,22 @@ public class SlidPathFollow : MonoBehaviour
         gameObject.transform.position = findClosestWayPoints(wayPoints).theWaypoint;
         actualWayPoint = findClosestWayPoints(wayPoints).index;
         targetWaypointVectorPosition = transform.position;
-
-        Debug.Log("start of slide");
-        Debug.Log("isMoving on start" + isMoving);
-        //tail = GetComponentInChildren<TrailRenderer>();
-        //if (tail == null)
-        //{
-        //    Debug.LogError("No trail renderer found");
-        //}
-        //tail.time = shortTail;
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (isMoving == false)
-        //{
-        //    //reduce the time of the trailrenderer
-        //    tail.time = shortTail;
-        //    //We are not moving, no need to do any checking. Just wait for the player.
-        //    return;
-        //}
-        //else
-        //{
-        //    tail.time = longTail;
-        //}
-
-
-        //Have we arrived at a waiting waypoint ?
- 
-            ////Debug.Log("arrived at waypoint");
-            //if (wayPoints[actualWayPoint].state == WayPointState.WAIT)
-            //{
-            //    //We are waiting fot the player to catch up
-            //    //just wait and be special !!!
-            //    isMoving = false;
-            //    //Set to be actualy centered on the waypoint
-            //    gameObject.transform.position = wayPoints[actualWayPoint].wayPoint.position;
-            //    targetWaypointVectorPosition = transform.position;
-            //    return;
-            //}
-            //else if (wayPoints[actualWayPoint].state == WayPointState.PASSTHROUGH)
-            //{
-                // We have reached a passthrough, move on
+        
+        if (wayPointPast()) 
+        { 
                 SetNextWaypoint();
-            //}
-            //else
-            //{
-            //    Debug.LogError("somthing went wrong");
-            //}
-            Debug.Log("isMoving" + isMoving);
+        }
+       
 
         //move to next waypoint.
         Vector3 direction = Vector3.MoveTowards(transform.position, targetWaypointVectorPosition, speed * Time.deltaTime);
         transform.position = direction;
-        transform.LookAt(direction);
         //TODO: Might have to take care of speed. maybe in the set next waypoint. We might get a speed that varies too much depending on the distance between the waypoints.
 
 
@@ -108,8 +69,15 @@ public class SlidPathFollow : MonoBehaviour
 
     void SetNextWaypoint()
     {
-        actualWayPoint += 1;
-        if (actualWayPoint >= wayPoints.Length ||isBoosting.value == false)
+        float dot = Vector3.Dot(transform.forward, (wayPoints[0].wayPoint.position - transform.position).normalized);
+        if (!(dot > 0.2f)) 
+        {
+            actualWayPoint += 1;
+        } else 
+        {
+            actualWayPoint -= 1;
+        }
+        if (actualWayPoint >= wayPoints.Length || isBoosting.value == false || actualWayPoint == 0)
         {
             //end of line, destroy
             gameObject.GetComponent<SurfControl>().enabled = true;
@@ -117,7 +85,6 @@ public class SlidPathFollow : MonoBehaviour
             return;
         }
         targetWaypointVectorPosition = wayPoints[actualWayPoint].wayPoint.position;
-        isMoving = true;
     }
 
 
@@ -160,8 +127,6 @@ public class SlidPathFollow : MonoBehaviour
 
     WaipointAndIndex findClosestWayPoints(WayPoints[] wayPointList)
     {
-
-        Debug.Log("should Only be call on start");
         WaipointAndIndex result = new WaipointAndIndex();
         Vector3 intersectPoint;
         float distanceMini = 0.0f;
@@ -197,5 +162,25 @@ public class SlidPathFollow : MonoBehaviour
         result.theWaypoint = wayPointList[closestWaypointIndex].wayPoint.position;
         result.index = closestWaypointIndex;
         return result;
+    }
+
+    bool wayPointPast()
+    {
+        int i = 1;
+        float plot = Vector3.Dot(transform.forward, (wayPoints[0].wayPoint.position - transform.position).normalized);
+        if (!(plot > 0.2f))
+        {
+ 
+            i = -1;
+        }
+        if (actualWayPoint < wayPoints.Length && actualWayPoint != 0)
+        {
+            float dot = Vector3.Dot(transform.forward, (wayPoints[actualWayPoint + i].wayPoint.position - transform.position).normalized);
+            if (dot > 0.2f)
+                return false;
+            else return true;
+        }
+        else
+            return false;
     }
 }

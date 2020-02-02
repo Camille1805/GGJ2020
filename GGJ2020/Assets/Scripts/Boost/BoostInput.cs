@@ -32,15 +32,9 @@ public class BoostInput : MonoBehaviour
         }
         if (isTrigered && boost.value > 0)
         {
-<<<<<<< HEAD
            boost.value--;
            isBoosted.value = true;
-           //Debug.Log("Le joueur utilise son boost !");
-=======
-            boost.value--;
-            isBoosted.value = true;
-            volume = Mathf.Clamp(volume + 0.1f, 0f, 1.0f);
->>>>>>> e6419b52c7f4979af169d903af28d963b71b1d0e
+           volume = Mathf.Clamp(volume + 0.1f, 0f, 1.0f);
         }
         else
         {
