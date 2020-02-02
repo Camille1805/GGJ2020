@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Bool", menuName = "Bool", order = 0)]
 public class BoolValue : ScriptableObject
 {
-    public bool value;
+    public bool value = false;
 }

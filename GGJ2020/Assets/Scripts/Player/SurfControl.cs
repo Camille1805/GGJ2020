@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SurfControl : MonoBehaviour
 {
@@ -10,9 +7,12 @@ public class SurfControl : MonoBehaviour
     [SerializeField] private float rotationForce = 25.0f;
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private bool showDebug = false;
-    [SerializeField] BoolValue isBoosted;
-    private InputManager inputManager;
+    [SerializeField] BoolValue isBoosted=null;
     [SerializeField] float forceBonusValue = 10;
+    private InputManager inputManager;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] float volumeModifier;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -28,16 +28,16 @@ public class SurfControl : MonoBehaviour
 
     private void MoveForward(float yAxisValue)
     {
-        float forwardForce;
-        if(isBoosted.value)
-            forwardForce = thrust * yAxisValue +forceBonusValue;
-        else
-            forwardForce = thrust * yAxisValue;
+
+        float forwardForce = isBoosted.value
+            ? thrust * yAxisValue + forceBonusValue
+            : thrust * yAxisValue;
         rigidBody.AddForce(transform.forward * forwardForce, forwardForceMode);
         if (showDebug)
         {
-            Debug.Log("forward" + transform.forward);
+            Debug.Log("forwardForce: " + forwardForce + "forward: " + transform.forward);
         }
+        audioSource.volume = rigidBody.velocity.magnitude / 30 * volumeModifier;
     }
 
     private void RotateSurf(Vector2 directions)

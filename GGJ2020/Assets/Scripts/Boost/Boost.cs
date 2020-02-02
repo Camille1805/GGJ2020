@@ -6,20 +6,15 @@ public class Boost : MonoBehaviour
 {
 
     [SerializeField]
-    float quantiteeEnPlus;
+    float quantiteeEnPlus=0;
     [SerializeField]
-    Float boostDuJoueur;
+    Float boostDuJoueur = null;
     [SerializeField]
-    Float boostMaxJoueur;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Float boostMaxJoueur=null;
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("");
-        if (other.tag.Equals("Player"))
+        if (other.CompareTag("Player"))
         {
             boostDuJoueur.value += Mathf.Clamp(quantiteeEnPlus, 0, boostMaxJoueur.value);
             Destroy(gameObject);
