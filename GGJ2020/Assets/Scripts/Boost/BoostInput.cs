@@ -30,7 +30,7 @@ public class BoostInput : MonoBehaviour
         {
            boost.value--;
            isBoosted.value = true;
-           Debug.Log("Le joueur utilise son boost !");
+           //Debug.Log("Le joueur utilise son boost !");
         }
         trailGameObject.SetActive(isBoosted.value);
     }
