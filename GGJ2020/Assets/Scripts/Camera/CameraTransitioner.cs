@@ -4,41 +4,32 @@ using UnityEngine;
 
 public class CameraTransitioner : MonoBehaviour
 {
-
-    [SerializeField] private Transform[] views=null;
-    [SerializeField] private Transform currentView;
-    [SerializeField] private float transitionSpeed=0;
+    public Transform target;
+    public Transform[] viewPoints;
+    public float transitionSpeed = 3.0f;
 
     void Update()
     {
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("view0");
-            currentView = views[0];
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            Debug.Log("view0");
-            currentView = views[1];
-        }
+        Vector3 targetPosition = GetClosestWaypoint().position;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, transitionSpeed * Time.deltaTime);
     }
 
-
-    void LateUpdate()
+    private Transform GetClosestWaypoint()
     {
-        Vector3 distanceToTravel = transform.position - currentView.position;
-        if (distanceToTravel == Vector3.zero)
+        int closestWaypointIndex = 0;
+        float lowestDistance = float.MaxValue;
+
+        for (int i = 0; i < viewPoints.Length; i++)
         {
-            return;
+            float distance = Vector3.Distance(target.position, viewPoints[i].position);
+
+            if (distance < lowestDistance)
+            {
+                lowestDistance = distance;
+                closestWaypointIndex = i;
+            }
         }
-        Debug.Log("Moving camera" + distanceToTravel);
-        transform.position = Vector3.Lerp(transform.position, currentView.position, Time.deltaTime * transitionSpeed);
-        Vector3 currentAngle = new Vector3(
-         Mathf.LerpAngle(transform.rotation.eulerAngles.x, currentView.transform.rotation.eulerAngles.x, Time.deltaTime * transitionSpeed),
-         Mathf.LerpAngle(transform.rotation.eulerAngles.y, currentView.transform.rotation.eulerAngles.y, Time.deltaTime * transitionSpeed),
-         Mathf.LerpAngle(transform.rotation.eulerAngles.z, currentView.transform.rotation.eulerAngles.z, Time.deltaTime * transitionSpeed));
-        transform.eulerAngles = currentAngle;
+
+        return viewPoints[closestWaypointIndex];
     }
 }
