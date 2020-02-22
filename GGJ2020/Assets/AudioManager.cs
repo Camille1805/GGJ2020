@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("ldldkd");
             am = this;
             DontDestroyOnLoad(gameObject);
+            GetComponent<AudioSource>().Play();
         }
     }
 
